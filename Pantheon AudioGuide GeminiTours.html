@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GEMINI TOURS — Pantheon Audio Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#141110; --bg-2:#1E1917; --panel:#221C19;
+    --cream:#F4EFE6; --muted:#B7AB9B; --gold:#C9A24B; --red:#C4453B; --line:#3A312B;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--cream);font-family:'Inter',sans-serif;line-height:1.6}
+  .wrap{max-width:860px;margin:0 auto;padding-bottom:60px}
+
+  /* Masthead */
+  .brand{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:18px 26px;border-bottom:1px solid var(--line);
+    letter-spacing:.3em;font-size:12px;font-weight:600;text-transform:uppercase;
+    position:sticky;top:0;background:var(--bg);z-index:5;
+  }
+  .brand .tag{color:var(--gold)}
+
+  .hero{padding:38px 26px 10px;text-align:center}
+  .hero .eyebrow{font-size:12px;letter-spacing:.4em;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:14px}
+  .hero h1{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:66px;line-height:.95}
+  .hero .sub{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:22px;color:var(--muted);margin-top:4px}
+
+  /* Language selector */
+  .langs{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;padding:22px 26px 6px}
+  .langbtn{
+    font-family:'Inter',sans-serif;font-size:13px;font-weight:500;
+    background:var(--bg-2);color:var(--muted);border:1px solid var(--line);
+    padding:9px 15px;border-radius:999px;cursor:pointer;transition:.15s;
+  }
+  .langbtn:hover{color:var(--cream)}
+  .langbtn.active{background:var(--gold);color:#141110;border-color:var(--gold);font-weight:600}
+
+  .intro{text-align:center;color:var(--muted);font-size:14px;padding:6px 26px 4px}
+  .total{text-align:center;color:var(--gold);font-size:12px;letter-spacing:.18em;text-transform:uppercase;font-weight:600;padding:14px 26px 0}
+
+  .stops{padding:22px 26px 0}
+  .stop{
+    background:var(--panel);border:1px solid var(--line);border-radius:6px;
+    padding:20px 20px 18px;margin-bottom:16px;
+  }
+  .stop .top{display:flex;align-items:flex-start;gap:16px}
+  .num{
+    flex-shrink:0;width:42px;height:42px;border-radius:50%;
+    background:transparent;border:1.5px solid var(--gold);color:var(--gold);
+    display:flex;align-items:center;justify-content:center;
+    font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:600;
+  }
+  .stop .head{flex:1;min-width:0}
+  .stop .row1{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+  .stop h3{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:26px;line-height:1.05}
+  .time{
+    font-size:11.5px;font-weight:600;letter-spacing:.06em;color:var(--gold);
+    border:1px solid var(--line);border-radius:999px;padding:3px 10px;white-space:nowrap;
+  }
+  .stop .todo{color:#E5DCCE;font-size:14px;margin-top:7px}
+
+  .audio{margin-top:15px;padding-left:58px}
+  .audio audio{width:100%;height:38px;border-radius:8px}
+  .noaudio{
+    display:flex;align-items:center;gap:12px;flex-wrap:wrap;
+    color:var(--muted);font-size:13px;font-style:italic;
+  }
+  .upload{
+    font-family:'Inter',sans-serif;font-size:11px;letter-spacing:.12em;text-transform:uppercase;font-weight:600;
+    background:transparent;color:var(--gold);border:1px solid var(--gold);
+    padding:8px 14px;border-radius:6px;cursor:pointer;
+  }
+  .upload:hover{background:var(--gold);color:#141110}
+
+  footer{text-align:center;padding:34px 24px 10px;border-top:1px solid var(--line);margin:22px 26px 0}
+  footer .fname{letter-spacing:.32em;font-size:12px;font-weight:600;text-transform:uppercase;color:var(--gold)}
+  footer .wish{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:20px;margin-top:6px}
+  .note{max-width:600px;margin:20px auto 0;color:var(--cream);font-size:17px;text-align:center;padding:0 26px;line-height:1.6;font-family:'Cormorant Garamond',serif;font-style:italic}
+  .copyright{text-align:center;color:#7C7264;font-size:11px;letter-spacing:.18em;padding:26px 26px 8px}
+
+  @media (max-width:560px){
+    .hero h1{font-size:48px}
+    .audio{padding-left:0}
+    .num{width:36px;height:36px;font-size:20px}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="brand">
+    <span>Gemini&nbsp;Tours</span>
+    <span class="tag">Rome</span>
+  </div>
+
+  <div class="hero">
+    <div class="eyebrow" id="eyebrow">Audio Guide</div>
+    <h1>Pantheon</h1>
+    <div class="sub" id="subtitle">Self-guided audio tour</div>
+  </div>
+
+  <div class="langs" id="langs"></div>
+  <div class="intro" id="intro"></div>
+
+  <div class="stops" id="stops"></div>
+
+  <footer>
+    <div class="fname">Gemini Tours</div>
+    <div class="wish" id="wish"></div>
+  </footer>
+  <div class="note" id="note"></div>
+  <div class="copyright" id="copyright">© 2026 GEMINI TOURS · All rights reserved</div>
+
+</div>
+
+<script>
+/* =========================================================
+   EDIT HERE — paste your audio file URLs (one per stop) for
+   each language. Leave "" for stops without audio yet.
+   You can also use the "Upload audio" button in the page to
+   test local files during a session.
+   ========================================================= */
+const AUDIO = {
+  en: [
+    "https://raw.githubusercontent.com/GeminiTours/PantheonAudio/main/Part%20I%20%E2%80%93%20Introduction%20Entering%20the%20Pantheon.mp3",
+    "https://raw.githubusercontent.com/GeminiTours/PantheonAudio/main/Part%20II%20%E2%80%93%20The%20History%20of%20the%20Pantheon.mp3",
+    "https://raw.githubusercontent.com/GeminiTours/PantheonAudio/main/Part%20III%20%E2%80%93%20Architecture%20and%20the%20Dome.mp3",
+    "https://raw.githubusercontent.com/GeminiTours/PantheonAudio/main/Part%20IV%20%E2%80%93%20Statues%2C%20Symbols%2C%20and%20Tombs.mp3",
+    "https://raw.githubusercontent.com/GeminiTours/PantheonAudio/main/Part%20V%20%E2%80%93%20Raphael%27s%20Tomb%20The%20Eternal%20Rest%20of%20a%20Genius.mp3",
+    "https://raw.githubusercontent.com/GeminiTours/PantheonAudio/main/Part%20VI%20%E2%80%93%20From%20Temple%20to%20Church.mp3",
+    "https://raw.githubusercontent.com/GeminiTours/PantheonAudio/main/Part%20VII%20%E2%80%93%20Secrets%2C%20Legends%2C%20and%20Hidden%20Symbols.mp3",
+    "https://raw.githubusercontent.com/GeminiTours/PantheonAudio/main/Part%20VIII%20%E2%80%93%20Final%20Insights%20Before%20You%20Leave.mp3"
+  ],
+  it: ["","","","","","","",""],
+  es: ["","","","","","","",""],
+  fr: ["","","","","","","",""],
+  pt: ["","","","","","","",""],
+  de: ["","","","","","","",""]
+};
+
+/* Timings in seconds. Parts 7 & 8 = null until you give them. */
+const TIMINGS = [78, 72, 89, 90, 93, 66, null, null];
+
+const LANGS = [
+  ["en","🇬🇧 English"],
+  ["it","🇮🇹 Italiano"],
+  ["es","🇪🇸 Español"],
+  ["fr","🇫🇷 Français"],
+  ["pt","🇵🇹 Português"],
+  ["de","🇩🇪 Deutsch"]
+];
+
+const T = {
+  en:{
+    eyebrow:"Audio Guide", sub:"Self-guided audio tour",
+    intro:"Press play at each stop as you move through the Pantheon.",
+    stopWord:"Stop", total:"Total duration", upload:"Upload audio",
+    noaudio:"No audio loaded yet", wish:"Enjoy Rome — buon viaggio.",
+    stops:[
+      ["Welcome","Stand before the portico. Take in the columns and the ancient inscription. Breathe."],
+      ["History & the Inscription","Read the inscription on the pediment and discover why Hadrian honoured Agrippa."],
+      ["The Dome & the Oculus","Move to the centre. Look straight up at the dome and the open eye of the oculus."],
+      ["The Interior & the Niches","Walk slowly around the rotunda, past the niches where the gods once stood."],
+      ["Raphael's Tomb","To the left of the entrance, pause at the tomb of Raphael and read its inscription."],
+      ["From Temple to Church","Near the altar, see how a pagan temple became a Christian church."],
+      ["Mystery & Wonder","Return beneath the oculus. Feel the light, the rain, and the mystery."],
+      ["A Final Lesson","Before you leave, reflect on how the Pantheon survived by adapting."]
+    ]
+  },
+  it:{
+    eyebrow:"Audioguida", sub:"Audioguida autoguidata",
+    intro:"Premi play a ogni tappa mentre attraversi il Pantheon.",
+    stopWord:"Tappa", total:"Durata totale", upload:"Carica audio",
+    noaudio:"Nessun audio caricato", wish:"Buona visita — buon viaggio.",
+    stops:[
+      ["Benvenuto","Fermati davanti al portico. Osserva le colonne e l'antica iscrizione. Respira."],
+      ["Storia e iscrizione","Leggi l'iscrizione sul frontone e scopri perché Adriano onorò Agrippa."],
+      ["La cupola e l'oculo","Spostati al centro. Guarda in alto verso la cupola e l'occhio aperto dell'oculo."],
+      ["L'interno e le nicchie","Cammina lentamente intorno alla rotonda, tra le nicchie dove stavano gli dei."],
+      ["La tomba di Raffaello","A sinistra dell'ingresso, sosta presso la tomba di Raffaello e leggi la sua iscrizione."],
+      ["Dal tempio alla chiesa","Vicino all'altare, scopri come un tempio pagano divenne una chiesa cristiana."],
+      ["Mistero e meraviglia","Torna sotto l'oculo. Senti la luce, la pioggia e il mistero."],
+      ["Una lezione finale","Prima di uscire, rifletti su come il Pantheon è sopravvissuto adattandosi."]
+    ]
+  },
+  es:{
+    eyebrow:"Audioguía", sub:"Audioguía autoguiada",
+    intro:"Pulsa reproducir en cada parada mientras recorres el Panteón.",
+    stopWord:"Parada", total:"Duración total", upload:"Subir audio",
+    noaudio:"Ningún audio cargado", wish:"Disfruta de Roma — buon viaggio.",
+    stops:[
+      ["Bienvenida","Detente ante el pórtico. Observa las columnas y la antigua inscripción. Respira."],
+      ["Historia e inscripción","Lee la inscripción del frontón y descubre por qué Adriano honró a Agripa."],
+      ["La cúpula y el óculo","Ve al centro. Mira hacia arriba, a la cúpula y al ojo abierto del óculo."],
+      ["El interior y los nichos","Camina despacio alrededor de la rotonda, entre los nichos donde estaban los dioses."],
+      ["La tumba de Rafael","A la izquierda de la entrada, detente en la tumba de Rafael y lee su inscripción."],
+      ["Del templo a la iglesia","Junto al altar, descubre cómo un templo pagano se convirtió en iglesia cristiana."],
+      ["Misterio y asombro","Vuelve bajo el óculo. Siente la luz, la lluvia y el misterio."],
+      ["Una lección final","Antes de salir, reflexiona sobre cómo el Panteón sobrevivió adaptándose."]
+    ]
+  },
+  fr:{
+    eyebrow:"Audioguide", sub:"Visite audio en autonomie",
+    intro:"Appuyez sur lecture à chaque étape en parcourant le Panthéon.",
+    stopWord:"Étape", total:"Durée totale", upload:"Charger un audio",
+    noaudio:"Aucun audio chargé", wish:"Profitez de Rome — buon viaggio.",
+    stops:[
+      ["Bienvenue","Arrêtez-vous devant le portique. Observez les colonnes et l'inscription antique. Respirez."],
+      ["Histoire et inscription","Lisez l'inscription du fronton et découvrez pourquoi Hadrien honora Agrippa."],
+      ["Le dôme et l'oculus","Placez-vous au centre. Levez les yeux vers le dôme et l'œil ouvert de l'oculus."],
+      ["L'intérieur et les niches","Marchez lentement autour de la rotonde, le long des niches où se tenaient les dieux."],
+      ["Le tombeau de Raphaël","À gauche de l'entrée, arrêtez-vous au tombeau de Raphaël et lisez son inscription."],
+      ["Du temple à l'église","Près de l'autel, découvrez comment un temple païen devint une église chrétienne."],
+      ["Mystère et émerveillement","Revenez sous l'oculus. Ressentez la lumière, la pluie et le mystère."],
+      ["Une dernière leçon","Avant de partir, réfléchissez à la façon dont le Panthéon a survécu en s'adaptant."]
+    ]
+  },
+  pt:{
+    eyebrow:"Audioguia", sub:"Áudio-tour autoguiado",
+    intro:"Toque em reproduzir em cada parada enquanto percorre o Panteão.",
+    stopWord:"Parada", total:"Duração total", upload:"Carregar áudio",
+    noaudio:"Nenhum áudio carregado", wish:"Aproveite Roma — buon viaggio.",
+    stops:[
+      ["Boas-vindas","Pare diante do pórtico. Observe as colunas e a inscrição antiga. Respire."],
+      ["História e inscrição","Leia a inscrição no frontão e descubra por que Adriano honrou Agripa."],
+      ["A cúpula e o óculo","Vá até o centro. Olhe para cima, para a cúpula e o olho aberto do óculo."],
+      ["O interior e os nichos","Caminhe devagar pela rotunda, entre os nichos onde antes estavam os deuses."],
+      ["O túmulo de Rafael","À esquerda da entrada, pare no túmulo de Rafael e leia sua inscrição."],
+      ["Do templo à igreja","Perto do altar, veja como um templo pagão se tornou uma igreja cristã."],
+      ["Mistério e encanto","Volte para baixo do óculo. Sinta a luz, a chuva e o mistério."],
+      ["Uma lição final","Antes de sair, reflita sobre como o Panteão sobreviveu ao se adaptar."]
+    ]
+  },
+  de:{
+    eyebrow:"Audioguide", sub:"Selbstgeführter Audio-Rundgang",
+    intro:"Drücken Sie an jeder Station auf Play, während Sie das Pantheon durchqueren.",
+    stopWord:"Station", total:"Gesamtdauer", upload:"Audio hochladen",
+    noaudio:"Kein Audio geladen", wish:"Genießen Sie Rom — buon viaggio.",
+    stops:[
+      ["Willkommen","Bleiben Sie vor dem Portikus stehen. Betrachten Sie die Säulen und die antike Inschrift. Atmen Sie."],
+      ["Geschichte & Inschrift","Lesen Sie die Inschrift am Giebel und erfahren Sie, warum Hadrian Agrippa ehrte."],
+      ["Die Kuppel & der Oculus","Gehen Sie in die Mitte. Blicken Sie hinauf zur Kuppel und zum offenen Auge des Oculus."],
+      ["Das Innere & die Nischen","Gehen Sie langsam um die Rotunde, vorbei an den Nischen, wo einst die Götter standen."],
+      ["Raffaels Grab","Links vom Eingang: Halten Sie an Raffaels Grab und lesen Sie seine Inschrift."],
+      ["Vom Tempel zur Kirche","Beim Altar sehen Sie, wie aus einem heidnischen Tempel eine christliche Kirche wurde."],
+      ["Geheimnis & Staunen","Kehren Sie unter den Oculus zurück. Spüren Sie das Licht, den Regen und das Geheimnis."],
+      ["Eine letzte Lektion","Bevor Sie gehen, denken Sie darüber nach, wie das Pantheon durch Anpassung überlebte."]
+    ]
+  }
+};
+
+const NOTE = "The Pantheon endured for two thousand years not by resisting change, but by adapting to it. May you carry the same spirit — stay curious, stay open, and let time make you timeless.";
+
+let lang = "en";
+const uploaded = { en:{}, it:{}, es:{}, fr:{}, pt:{}, de:{} };
+
+function fmt(sec){
+  if(sec==null) return "—:—";
+  const m=Math.floor(sec/60), s=sec%60;
+  return m+":"+String(s).padStart(2,"0");
+}
+function totalStr(){
+  const known=TIMINGS.filter(t=>t!=null);
+  const sum=known.reduce((a,b)=>a+b,0);
+  const complete=known.length===TIMINGS.length;
+  return fmt(sum)+(complete?"":" +");
+}
+
+function render(){
+  const d=T[lang];
+  document.documentElement.lang=lang;
+  document.getElementById("eyebrow").textContent=d.eyebrow;
+  document.getElementById("subtitle").textContent=d.sub;
+  document.getElementById("intro").textContent=d.intro;
+  document.getElementById("wish").textContent=d.wish;
+  document.getElementById("note").textContent=NOTE;
+
+  // language buttons
+  const lc=document.getElementById("langs");
+  lc.innerHTML="";
+  LANGS.forEach(([code,label])=>{
+    const b=document.createElement("button");
+    b.className="langbtn"+(code===lang?" active":"");
+    b.textContent=label;
+    b.onclick=()=>{lang=code;render();};
+    lc.appendChild(b);
+  });
+
+  // stops
+  const sc=document.getElementById("stops");
+  sc.innerHTML="";
+  d.stops.forEach((st,i)=>{
+    const card=document.createElement("div");
+    card.className="stop";
+
+    const top=document.createElement("div"); top.className="top";
+    const num=document.createElement("div"); num.className="num"; num.textContent=(i+1);
+    const head=document.createElement("div"); head.className="head";
+    const row1=document.createElement("div"); row1.className="row1";
+    const h=document.createElement("h3"); h.textContent=st[0];
+    const time=document.createElement("span"); time.className="time"; time.textContent=fmt(TIMINGS[i]);
+    row1.appendChild(h); row1.appendChild(time);
+    const todo=document.createElement("div"); todo.className="todo"; todo.textContent=st[1];
+    head.appendChild(row1); head.appendChild(todo);
+    top.appendChild(num); top.appendChild(head);
+
+    const audioWrap=document.createElement("div"); audioWrap.className="audio";
+    const src = uploaded[lang][i] || AUDIO[lang][i] || "";
+    if(src){
+      const a=document.createElement("audio");
+      a.controls=true; a.preload="none"; a.src=src;
+      audioWrap.appendChild(a);
+    }else{
+      const na=document.createElement("div"); na.className="noaudio";
+      const txt=document.createElement("span"); txt.textContent=d.noaudio;
+      const btn=document.createElement("button"); btn.className="upload"; btn.textContent=d.upload;
+      const inp=document.createElement("input"); inp.type="file"; inp.accept="audio/*"; inp.style.display="none";
+      btn.onclick=()=>inp.click();
+      inp.onchange=e=>{
+        const f=e.target.files[0];
+        if(f){ uploaded[lang][i]=URL.createObjectURL(f); render(); }
+      };
+      na.appendChild(txt); na.appendChild(btn); na.appendChild(inp);
+      audioWrap.appendChild(na);
+    }
+
+    card.appendChild(top); card.appendChild(audioWrap);
+    sc.appendChild(card);
+  });
+}
+
+render();
+</script>
+</body>
+</html>
