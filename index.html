@@ -163,8 +163,24 @@ const AUDIO = {
     "https://raw.githubusercontent.com/GeminiTours/PantheonAudio/main/Partie%206%20%E2%80%93%20Du%20temple%20%C3%A0%20l%E2%80%99%C3%A9glise.mp3",
     "https://raw.githubusercontent.com/GeminiTours/PantheonAudio/main/Partie%207%20%E2%80%93%20Myst%C3%A8res%2C%20l%C3%A9gendes%20et%20secrets%20cach%C3%A9s.mp3"
   ],
-  pt: ["","","","","","","",""],
-  de: ["","","","","","","",""]
+  pt: [
+    "https://raw.githubusercontent.com/GeminiTours/PantheonAudio/main/Parte%201%20%E2%80%93%20Introdu%C3%A7%C3%A3o%20Entrando%20no%20Pante%C3%A3o.mp3",
+    "https://raw.githubusercontent.com/GeminiTours/PantheonAudio/main/Parte%202%20%E2%80%93%20A%20Hist%C3%B3ria%20do%20Pante%C3%A3o.mp3",
+    "https://raw.githubusercontent.com/GeminiTours/PantheonAudio/main/Parte%203%20%E2%80%93%20A%20Arquitetura%20e%20a%20C%C3%BApula%20do%20Pante%C3%A3o.mp3",
+    "https://raw.githubusercontent.com/GeminiTours/PantheonAudio/main/Parte%204%20%E2%80%93%20Est%C3%A1tuas%2C%20S%C3%ADmbolos%20e%20T%C3%BAmulos.mp3",
+    "https://raw.githubusercontent.com/GeminiTours/PantheonAudio/main/Parte%205%20%E2%80%93%20O%20T%C3%BAmulo%20de%20Rafael%20A%20Paz%20Eterna%20de%20um%20G%C3%AAnio.mp3",
+    "https://raw.githubusercontent.com/GeminiTours/PantheonAudio/main/Parte%206%20%E2%80%93%20Do%20Templo%20%C3%A0%20Igreja.mp3",
+    "https://raw.githubusercontent.com/GeminiTours/PantheonAudio/main/Parte%207%20%E2%80%93%20Mist%C3%A9rios%2C%20Lendas%20e%20Segredos%20Ocultos.mp3"
+  ],
+  de: [
+    "https://raw.githubusercontent.com/GeminiTours/PantheonAudio/main/Teil%201%20%E2%80%93%20Einf%C3%BChrung%20Der%20Eintritt%20ins%20Pantheon.mp3",
+    "https://raw.githubusercontent.com/GeminiTours/PantheonAudio/main/Teil%202%20%E2%80%93%20Die%20Geschichte%20des%20Pantheons.mp3",
+    "https://raw.githubusercontent.com/GeminiTours/PantheonAudio/main/Teil%203%20%E2%80%93%20Architektur%20und%20Kuppel%20des%20Pantheons.mp3",
+    "https://raw.githubusercontent.com/GeminiTours/PantheonAudio/main/Teil%204%20%E2%80%93%20Statuen%2C%20Symbole%20und%20Grabm%C3%A4ler.mp3",
+    "https://raw.githubusercontent.com/GeminiTours/PantheonAudio/main/Teil%205%20%E2%80%93%20Das%20Grab%20von%20Raffael%20Der%20ewige%20Frieden%20eines%20Genies.mp3",
+    "https://raw.githubusercontent.com/GeminiTours/PantheonAudio/main/Teil%206%20%E2%80%93%20Vom%20Tempel%20zur%20Kirche.mp3",
+    "https://raw.githubusercontent.com/GeminiTours/PantheonAudio/main/Teil%207%20%E2%80%93%20Geheimnisse%2C%20Legenden%20und%20verborgene%20Kr%C3%A4fte.mp3"
+  ]
 };
 
 /* Timings in seconds, per language. Use null for unknown. */
@@ -254,14 +270,13 @@ const T = {
     stopWord:"Parada", total:"Duração total", upload:"Carregar áudio",
     noaudio:"Nenhum áudio carregado", wish:"Aproveite Roma — buon viaggio.",
     stops:[
-      ["Boas-vindas","Pare diante do pórtico. Observe as colunas e a inscrição antiga. Respire."],
-      ["História e inscrição","Leia a inscrição no frontão e descubra por que Adriano honrou Agripa."],
-      ["A cúpula e o óculo","Vá até o centro. Olhe para cima, para a cúpula e o olho aberto do óculo."],
-      ["O interior e os nichos","Caminhe devagar pela rotunda, entre os nichos onde antes estavam os deuses."],
-      ["O túmulo de Rafael","À esquerda da entrada, pare no túmulo de Rafael e leia sua inscrição."],
-      ["Do templo à igreja","Perto do altar, veja como um templo pagão se tornou uma igreja cristã."],
-      ["Mistério e encanto","Volte para baixo do óculo. Sinta a luz, a chuva e o mistério."],
-      ["Uma lição final","Antes de sair, reflita sobre como o Panteão sobreviveu ao se adaptar."]
+      ["Introdução","Pare diante do pórtico. Observe as colunas e a inscrição antiga. Respire."],
+      ["A História do Panteão","Leia a inscrição no frontão e descubra por que Adriano honrou Agripa."],
+      ["A Arquitetura e a Cúpula","Vá até o centro. Olhe para cima, para a cúpula e o olho aberto do óculo."],
+      ["Estátuas, Símbolos e Túmulos","Caminhe devagar pela rotunda, entre os nichos onde antes estavam os deuses."],
+      ["O Túmulo de Rafael","À esquerda da entrada, pare no túmulo de Rafael e leia sua inscrição."],
+      ["Do Templo à Igreja","Perto do altar, veja como um templo pagão se tornou uma igreja cristã."],
+      ["Mistérios, Lendas e Segredos","Volte para baixo do óculo. Sinta a luz, a chuva e o mistério."]
     ]
   },
   de:{
@@ -270,14 +285,13 @@ const T = {
     stopWord:"Station", total:"Gesamtdauer", upload:"Audio hochladen",
     noaudio:"Kein Audio geladen", wish:"Genießen Sie Rom — buon viaggio.",
     stops:[
-      ["Willkommen","Bleiben Sie vor dem Portikus stehen. Betrachten Sie die Säulen und die antike Inschrift. Atmen Sie."],
-      ["Geschichte & Inschrift","Lesen Sie die Inschrift am Giebel und erfahren Sie, warum Hadrian Agrippa ehrte."],
-      ["Die Kuppel & der Oculus","Gehen Sie in die Mitte. Blicken Sie hinauf zur Kuppel und zum offenen Auge des Oculus."],
-      ["Das Innere & die Nischen","Gehen Sie langsam um die Rotunde, vorbei an den Nischen, wo einst die Götter standen."],
-      ["Raffaels Grab","Links vom Eingang: Halten Sie an Raffaels Grab und lesen Sie seine Inschrift."],
+      ["Einführung","Bleiben Sie vor dem Portikus stehen. Betrachten Sie die Säulen und die antike Inschrift. Atmen Sie."],
+      ["Die Geschichte des Pantheons","Lesen Sie die Inschrift am Giebel und erfahren Sie, warum Hadrian Agrippa ehrte."],
+      ["Architektur und Kuppel","Gehen Sie in die Mitte. Blicken Sie hinauf zur Kuppel und zum offenen Auge des Oculus."],
+      ["Statuen, Symbole und Grabmäler","Gehen Sie langsam um die Rotunde, vorbei an den Nischen, wo einst die Götter standen."],
+      ["Das Grab von Raffael","Links vom Eingang: Halten Sie an Raffaels Grab und lesen Sie seine Inschrift."],
       ["Vom Tempel zur Kirche","Beim Altar sehen Sie, wie aus einem heidnischen Tempel eine christliche Kirche wurde."],
-      ["Geheimnis & Staunen","Kehren Sie unter den Oculus zurück. Spüren Sie das Licht, den Regen und das Geheimnis."],
-      ["Eine letzte Lektion","Bevor Sie gehen, denken Sie darüber nach, wie das Pantheon durch Anpassung überlebte."]
+      ["Geheimnisse, Legenden und Kräfte","Kehren Sie unter den Oculus zurück. Spüren Sie das Licht, den Regen und das Geheimnis."]
     ]
   }
 };
