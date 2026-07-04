@@ -145,8 +145,24 @@ const AUDIO = {
     "https://raw.githubusercontent.com/GeminiTours/PantheonAudio/main/Parte%20Sesta%20%E2%80%93%20Da%20Tempio%20a%20Chiesa.mp3",
     "https://raw.githubusercontent.com/GeminiTours/PantheonAudio/main/Parte%20Settima%20%E2%80%93%20Segreti%2C%20Leggende%20e%20Misteri%20Nascosti.mp3"
   ],
-  es: ["","","","","","","",""],
-  fr: ["","","","","","","",""],
+  es: [
+    "https://raw.githubusercontent.com/GeminiTours/PantheonAudio/main/Parte%201%20%E2%80%93%20Introducci%C3%B3n%20Entrando%20al%20Pante%C3%B3n.mp3",
+    "https://raw.githubusercontent.com/GeminiTours/PantheonAudio/main/Parte%202%20%E2%80%93%20Historia%20del%20Pante%C3%B3n.mp3",
+    "https://raw.githubusercontent.com/GeminiTours/PantheonAudio/main/Parte%203%20%E2%80%93%20Arquitectura%20y%20la%20C%C3%BApula%20del%20Pante%C3%B3n.mp3",
+    "https://raw.githubusercontent.com/GeminiTours/PantheonAudio/main/Parte%204%20%E2%80%93%20Estatuas%2C%20s%C3%ADmbolos%20y%20tumbas.mp3",
+    "https://raw.githubusercontent.com/GeminiTours/PantheonAudio/main/Parte%205%20%E2%80%93%20La%20tumba%20de%20Rafael%3B%20la%20paz%20eterna%20de%20un%20genio.mp3",
+    "https://raw.githubusercontent.com/GeminiTours/PantheonAudio/main/Parte%206%20%E2%80%93%20De%20templo%20a%20iglesia.mp3",
+    "https://raw.githubusercontent.com/GeminiTours/PantheonAudio/main/Parte%207%20%E2%80%93%20Secretos%2C%20leyendas%20y%20misterios%20ocultos.mp3"
+  ],
+  fr: [
+    "https://raw.githubusercontent.com/GeminiTours/PantheonAudio/main/Partie%201%20%E2%80%93%20Introduction%20%20Entrer%20dans%20le%20Panth%C3%A9on.mp3",
+    "https://raw.githubusercontent.com/GeminiTours/PantheonAudio/main/Partie%202%20%E2%80%93%20Histoire%20du%20Panth%C3%A9on.mp3",
+    "https://raw.githubusercontent.com/GeminiTours/PantheonAudio/main/Partie%203%20%E2%80%93%20Architecture%20et%20la%20coupole%20du%20Panth%C3%A9on.mp3",
+    "https://raw.githubusercontent.com/GeminiTours/PantheonAudio/main/Partie%204%20%E2%80%93%20Statues%2C%20symboles%20et%20tombeaux.mp3",
+    "https://raw.githubusercontent.com/GeminiTours/PantheonAudio/main/Partie%205%20%E2%80%93%20La%20tombe%20de%20Rapha%C3%ABl%20la%20paix%20%C3%A9ternelle%20d%E2%80%99un%20g%C3%A9nie.mp3",
+    "https://raw.githubusercontent.com/GeminiTours/PantheonAudio/main/Partie%206%20%E2%80%93%20Du%20temple%20%C3%A0%20l%E2%80%99%C3%A9glise.mp3",
+    "https://raw.githubusercontent.com/GeminiTours/PantheonAudio/main/Partie%207%20%E2%80%93%20Myst%C3%A8res%2C%20l%C3%A9gendes%20et%20secrets%20cach%C3%A9s.mp3"
+  ],
   pt: ["","","","","","","",""],
   de: ["","","","","","","",""]
 };
@@ -208,14 +224,13 @@ const T = {
     stopWord:"Parada", total:"Duración total", upload:"Subir audio",
     noaudio:"Ningún audio cargado", wish:"Disfruta de Roma — buon viaggio.",
     stops:[
-      ["Bienvenida","Detente ante el pórtico. Observa las columnas y la antigua inscripción. Respira."],
-      ["Historia e inscripción","Lee la inscripción del frontón y descubre por qué Adriano honró a Agripa."],
-      ["La cúpula y el óculo","Ve al centro. Mira hacia arriba, a la cúpula y al ojo abierto del óculo."],
-      ["El interior y los nichos","Camina despacio alrededor de la rotonda, entre los nichos donde estaban los dioses."],
+      ["Introducción","Detente ante el pórtico. Observa las columnas y la antigua inscripción. Respira."],
+      ["Historia del Panteón","Lee la inscripción del frontón y descubre por qué Adriano honró a Agripa."],
+      ["Arquitectura y la cúpula","Ve al centro. Mira hacia arriba, a la cúpula y al ojo abierto del óculo."],
+      ["Estatuas, símbolos y tumbas","Camina despacio alrededor de la rotonda, entre los nichos donde estaban los dioses."],
       ["La tumba de Rafael","A la izquierda de la entrada, detente en la tumba de Rafael y lee su inscripción."],
-      ["Del templo a la iglesia","Junto al altar, descubre cómo un templo pagano se convirtió en iglesia cristiana."],
-      ["Misterio y asombro","Vuelve bajo el óculo. Siente la luz, la lluvia y el misterio."],
-      ["Una lección final","Antes de salir, reflexiona sobre cómo el Panteón sobrevivió adaptándose."]
+      ["De templo a iglesia","Junto al altar, descubre cómo un templo pagano se convirtió en iglesia cristiana."],
+      ["Secretos, leyendas y misterios","Vuelve bajo el óculo. Siente la luz, la lluvia y el misterio."]
     ]
   },
   fr:{
@@ -224,14 +239,13 @@ const T = {
     stopWord:"Étape", total:"Durée totale", upload:"Charger un audio",
     noaudio:"Aucun audio chargé", wish:"Profitez de Rome — buon viaggio.",
     stops:[
-      ["Bienvenue","Arrêtez-vous devant le portique. Observez les colonnes et l'inscription antique. Respirez."],
-      ["Histoire et inscription","Lisez l'inscription du fronton et découvrez pourquoi Hadrien honora Agrippa."],
-      ["Le dôme et l'oculus","Placez-vous au centre. Levez les yeux vers le dôme et l'œil ouvert de l'oculus."],
-      ["L'intérieur et les niches","Marchez lentement autour de la rotonde, le long des niches où se tenaient les dieux."],
+      ["Introduction","Arrêtez-vous devant le portique. Observez les colonnes et l'inscription antique. Respirez."],
+      ["Histoire du Panthéon","Lisez l'inscription du fronton et découvrez pourquoi Hadrien honora Agrippa."],
+      ["Architecture et coupole","Placez-vous au centre. Levez les yeux vers le dôme et l'œil ouvert de l'oculus."],
+      ["Statues, symboles et tombeaux","Marchez lentement autour de la rotonde, le long des niches où se tenaient les dieux."],
       ["Le tombeau de Raphaël","À gauche de l'entrée, arrêtez-vous au tombeau de Raphaël et lisez son inscription."],
       ["Du temple à l'église","Près de l'autel, découvrez comment un temple païen devint une église chrétienne."],
-      ["Mystère et émerveillement","Revenez sous l'oculus. Ressentez la lumière, la pluie et le mystère."],
-      ["Une dernière leçon","Avant de partir, réfléchissez à la façon dont le Panthéon a survécu en s'adaptant."]
+      ["Mystères, légendes et secrets","Revenez sous l'oculus. Ressentez la lumière, la pluie et le mystère."]
     ]
   },
   pt:{
