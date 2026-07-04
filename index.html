@@ -136,15 +136,30 @@ const AUDIO = {
     "https://raw.githubusercontent.com/GeminiTours/PantheonAudio/main/Part%20VII%20%E2%80%93%20Secrets%2C%20Legends%2C%20and%20Hidden%20Symbols.mp3",
     "https://raw.githubusercontent.com/GeminiTours/PantheonAudio/main/Part%20VIII%20%E2%80%93%20Final%20Insights%20Before%20You%20Leave.mp3"
   ],
-  it: ["","","","","","","",""],
+  it: [
+    "https://raw.githubusercontent.com/GeminiTours/PantheonAudio/main/Parte%20Prima%20%E2%80%93%20Introduzione%20Entrare%20nel%20Pantheon.mp3",
+    "https://raw.githubusercontent.com/GeminiTours/PantheonAudio/main/Parte%20Seconda%20%E2%80%93%20Storia%20del%20Pantheon.mp3",
+    "https://raw.githubusercontent.com/GeminiTours/PantheonAudio/main/Parte%20Terza%20%E2%80%93%20Architettura%20e%20Cupola%20del%20Pantheon.mp3",
+    "https://raw.githubusercontent.com/GeminiTours/PantheonAudio/main/Parte%20Quarta%20%E2%80%93%20Statue%2C%20Simboli%20e%20Tombe.mp3",
+    "https://raw.githubusercontent.com/GeminiTours/PantheonAudio/main/Parte%20Quinta%20%E2%80%93%20La%20Tomba%20di%20Raffaello%20La%20Pace%20Eterna%20di%20un%20Genio.mp3",
+    "https://raw.githubusercontent.com/GeminiTours/PantheonAudio/main/Parte%20Sesta%20%E2%80%93%20Da%20Tempio%20a%20Chiesa.mp3",
+    "https://raw.githubusercontent.com/GeminiTours/PantheonAudio/main/Parte%20Settima%20%E2%80%93%20Segreti%2C%20Leggende%20e%20Misteri%20Nascosti.mp3"
+  ],
   es: ["","","","","","","",""],
   fr: ["","","","","","","",""],
   pt: ["","","","","","","",""],
   de: ["","","","","","","",""]
 };
 
-/* Timings in seconds. Parts 7 & 8 = null until you give them. */
-const TIMINGS = [78, 72, 89, 90, 93, 66, null, null];
+/* Timings in seconds, per language. Use null for unknown. */
+const TIMINGS = {
+  en: [78, 72, 89, 90, 93, 66, null, null],
+  it: [null, null, null, null, null, null, null],
+  es: [null, null, null, null, null, null, null, null],
+  fr: [null, null, null, null, null, null, null, null],
+  pt: [null, null, null, null, null, null, null, null],
+  de: [null, null, null, null, null, null, null, null]
+};
 
 const LANGS = [
   ["en","🇬🇧 English"],
@@ -178,14 +193,13 @@ const T = {
     stopWord:"Tappa", total:"Durata totale", upload:"Carica audio",
     noaudio:"Nessun audio caricato", wish:"Buona visita — buon viaggio.",
     stops:[
-      ["Benvenuto","Fermati davanti al portico. Osserva le colonne e l'antica iscrizione. Respira."],
-      ["Storia e iscrizione","Leggi l'iscrizione sul frontone e scopri perché Adriano onorò Agrippa."],
-      ["La cupola e l'oculo","Spostati al centro. Guarda in alto verso la cupola e l'occhio aperto dell'oculo."],
-      ["L'interno e le nicchie","Cammina lentamente intorno alla rotonda, tra le nicchie dove stavano gli dei."],
+      ["Introduzione","Fermati davanti al portico. Osserva le colonne e l'antica iscrizione. Respira."],
+      ["Storia del Pantheon","Leggi l'iscrizione sul frontone e scopri perché Adriano onorò Agrippa."],
+      ["Architettura e cupola","Spostati al centro. Guarda in alto verso la cupola e l'occhio aperto dell'oculo."],
+      ["Statue, simboli e tombe","Cammina lentamente intorno alla rotonda, tra le nicchie dove stavano gli dei."],
       ["La tomba di Raffaello","A sinistra dell'ingresso, sosta presso la tomba di Raffaello e leggi la sua iscrizione."],
-      ["Dal tempio alla chiesa","Vicino all'altare, scopri come un tempio pagano divenne una chiesa cristiana."],
-      ["Mistero e meraviglia","Torna sotto l'oculo. Senti la luce, la pioggia e il mistero."],
-      ["Una lezione finale","Prima di uscire, rifletti su come il Pantheon è sopravvissuto adattandosi."]
+      ["Da tempio a chiesa","Vicino all'altare, scopri come un tempio pagano divenne una chiesa cristiana."],
+      ["Segreti, leggende e misteri","Torna sotto l'oculo. Senti la luce, la pioggia e il mistero."]
     ]
   },
   es:{
@@ -264,12 +278,6 @@ function fmt(sec){
   const m=Math.floor(sec/60), s=sec%60;
   return m+":"+String(s).padStart(2,"0");
 }
-function totalStr(){
-  const known=TIMINGS.filter(t=>t!=null);
-  const sum=known.reduce((a,b)=>a+b,0);
-  const complete=known.length===TIMINGS.length;
-  return fmt(sum)+(complete?"":" +");
-}
 
 function render(){
   const d=T[lang];
@@ -303,7 +311,7 @@ function render(){
     const head=document.createElement("div"); head.className="head";
     const row1=document.createElement("div"); row1.className="row1";
     const h=document.createElement("h3"); h.textContent=st[0];
-    const time=document.createElement("span"); time.className="time"; time.textContent=fmt(TIMINGS[i]);
+    const time=document.createElement("span"); time.className="time"; time.textContent=fmt((TIMINGS[lang]||[])[i]);
     row1.appendChild(h); row1.appendChild(time);
     const todo=document.createElement("div"); todo.className="todo"; todo.textContent=st[1];
     head.appendChild(row1); head.appendChild(todo);
